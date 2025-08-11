@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Billion Memories | Wedding Photography</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;family=Sacramento&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Swiper -->
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+<!-- Main CSS -->
+<link href="billion.css" rel="stylesheet"/>
+</link></head>
+<body>
+<header class="title-header">
+<div class="head-container">
+<a class="logo" href="#">Billion Memories</a>
+<nav class="nav">
+<ul class="nav-list">
+<li><a href="#Home">Home</a></li>
+<li><a href="#Services">Services</a></li>
+<li><a href="#Equipment">Equipment</a></li>
+<li><a href="#Gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<button class="btn btn-signin">Log in</button>
+</nav>
+<!--dark-mode-toggle Start-->
+<div class="toggle-container">
+<input class="toggle-checkbox" id="dark-mode-toggle" type="checkbox"/>
+<label class="toggle-label" for="dark-mode-toggle">
+<i class="fas fa-moon"></i>
+<i class="fas fa-sun"></i>
+<span class="toggle-ball"></span>
+</label>
+</div>
+<!--dark-mode-toggle End-->
+<button class="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</header>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+<style>
+        /* General Reset and Base Styles */
+        /* --- Layout & Structure --- */
+        .hero-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0a0a0a;
+        }
+        .hero-content {
+            position: absolute;
+            z-index: 20;
+            top: 6rem;
+            left: 2rem;
+            right: 2rem;
+            max-width: 28rem;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: transparent;
+            background-clip: text;
+            background-image: linear-gradient(to bottom right, #ffffff, #d1d5db);
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            background-image: linear-gradient(to bottom right, #fcd34d, #f59e0b);
+            color: #1f2937;
+            font-weight: 600;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+        .cta-button:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+        }
+        .cta-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(252, 211, 77, 0.5);
+        }
+        .cta-button svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            transform: rotate(-45deg);
+        }
+        /* Background Images */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.85) contrast(1.1);
+        }
+        .bg-image.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), transparent, rgba(0, 0, 0, 0.5));
+            z-index: 10;
+            pointer-events: none;
+        }
+        /* --- Thumbnails & Navigation --- */
+        .thumbnail-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            padding: 0.75rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 95vw;
+        }
+        .side-nav {
+            display: none;
+        }
+        .thumbnail, .desktop-thumbnail {
+            position: relative;
+            width: 6rem;
+            height: 3.5rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.3s ease-in-out;
+            flex-shrink: 0;
+        }
+        .thumbnail img, .desktop-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .thumbnail:hover, .desktop-thumbnail:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        .thumbnail.active, .desktop-thumbnail.active {
+            opacity: 1;
+            border-color: #fcd34d;
+        }
+        /* Swiper custom styles */
+        .swiper-nav-thumbs .swiper-wrapper {
+            box-sizing: border-box;
+            align-items: center;
+        }
+        .swiper-nav-thumbs .swiper-slide {
+            width: auto !important;
+        }
+        /* Progress Bar */
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background-image: linear-gradient(to right, #fcd34d, #f59e0b);
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .thumbnail.active .progress-bar, .desktop-thumbnail.active .progress-bar {
+            animation: progressFill 6s linear forwards;
+        }
+        /* --- Modal Dialog --- */
+        dialog {
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            padding: 2rem;
+            background-color: #1f2937;
+            border-radius: 1rem;
+            color: #ffffff;
+            max-width: 36rem;
+            width: 90vw;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .modal-content svg {
+            height: 4rem;
+            width: 4rem;
+            color: #fcd34d;
+            margin-bottom: 1rem;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .modal-text {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .modal-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #fcd34d;
+            color: #1f2937;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: background-color 0.3s;
+        }
+        .modal-button:hover {
+            background-color: #f59e0b;
+        }
+        /* --- Animations --- */
+        .loading {
+            animation: fadeIn 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        /* --- Responsive Styles --- */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .hero-content {
+                top: 50%;
+                left: 5rem;
+                transform: translateY(-50%);
+                right: auto;
+                max-width: 32rem;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+            .cta-button {
+                gap: 0.75rem;
+                padding: 1rem 2rem;
+                font-size: 1.125rem;
+            }
+            .thumbnail-nav {
+                display: none;
+            }
+            .side-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                right: 2.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 30;
+                animation: fadeIn 1s ease-out 0.5s forwards;
+                opacity: 0;
+            }
+            .desktop-thumbnail {
+                width: 5rem;
+                height: 2.75rem;
+            }
+            .modal-content {
+                padding: 3rem;
+            }
+            .modal-title {
+                font-size: 1.875rem;
+            }
+            .modal-text {
+                font-size: 1.125rem;
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .hero-content {
+                max-width: 42rem;
+            }
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</link>
+</body></html>
+<section class="quote-section05">
+<p class="quote-text">Great photography is about depth of feeling, not depth of field.</p>
+</section>
+<!--illustrastion image here up-->
+<!--Photography services proived slider start -->
+<section class="photography-services-slider" id="Services">
+<div class="slider-containerX">
+<div class="slider-wrapperX">
+<h1 class="slider-titleX">Photography Services We Offer</h1>
+<div class="slider-trackX">
+<!-- Individual Slide Example -->
+<div class="slideX">
+<div>
+<h3>Pre-Wedding Shoot</h3>
+<p><strong><em>Romantic storytelling before your wedding day with beautiful outdoor locations and intimate moments.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Engagement</h3>
+<p><strong><em>Elegant portraits celebrating your commitment with timeless photography that captures your love story.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Haldi Ceremony</h3>
+<p><strong><em>Joyful, colorful, and full of traditions. Capturing the vibrant essence of this auspicious ritual.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Sangeet Night</h3>
+<p><strong><em>Fun, dance, and celebration with family. Documenting the energy and joy of your musical evening.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Drone Photography</h3>
+<p><strong><em>Stunning aerial views of venues and moments, adding a cinematic dimension to your memories.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Bridal Portraits</h3>
+<p><strong><em>Capturing elegance and beauty in every frame with professional lighting and artistic composition.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Reception &amp; More</h3>
+<p><strong><em>Reception, Vidai, and celebration memories preserved with candid and posed photography.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Baby Photoshoot</h3>
+<p><strong><em>Heartwarming baby and toddler portraits capturing precious milestones and innocent expressions.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Baby Shower</h3>
+<p><strong><em>Celebrate the joy of coming parenthood with beautiful maternity and celebration photography.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Traditional Ceremonies</h3>
+<p><strong><em>Memorable and traditional family events including ear piercing and cultural celebrations.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Birthday Celebrations</h3>
+<p><strong><em>Joyful moments of celebration and fun, capturing the happiness of special milestone birthdays.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>School Events</h3>
+<p><strong><em>Cultural programs, academic achievements and annual day celebrations professionally documented.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>College Events</h3>
+<p><strong><em>Graduations, farewells, and campus moments that mark important educational milestones.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Corporate Events</h3>
+<p><strong><em>Professional coverage of office meetups, parties, product launches and business celebrations.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Grand Openings</h3>
+<p><strong><em>Store launches, ribbon cutting ceremonies and inaugural events with professional documentation.</em></strong></p>
+</div>
+</div>
+<div class="slideX">
+<div>
+<h3>Public Events</h3>
+<p><strong><em>Professional coverage of speeches, rallies, and community gatherings with journalistic approach.</em></strong></p>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+<!--Photograpghy services proived slider end -->
+<!-- Stats Section -->
+<section class="stats-wrapper">
+<div class="stats-section">
+<div class="stat-card" data-target="50000">
+<div class="stat-number">0</div>
+<div class="stat-label">Satisfied Clients</div>
+</div>
+<div class="stat-card" data-target="13">
+<div class="stat-number">0</div>
+<div class="stat-label">Years Experience</div>
+</div>
+<div class="stat-card" data-target="20">
+<div class="stat-number">0</div>
+<div class="stat-label">Professional Designers</div>
+</div>
+<div class="stat-card featured" data-target="10000">
+<div class="stat-number">0</div>
+<div class="stat-label">Digital Products</div>
+</div>
+</div>
+</section>
+<!-- Interactive Cards Section card jump jump start-->
+<section class="hover-card-style">
+<div class="container-2">
+<h2 class="elegant-minimal">Discover <span class="highlight-text">Billion Memoeries</span> Stories<br/><em>� tap to unveil the magic �</em></h2>
+<div class="card-steps">
+<div class="card">
+<div class="slide slide1">
+<div class="content">
+<div class="icon card1">
+<i class="fas fa-camera-retro"></i>
+<h2 class="title">About Us</h2>
+</div>
+</div>
+</div>
+<div class="slide slide2">
+<div class="content">
+<h3>About Billion Dollar Memories</h3>
+<p>We believe every frame has a soul, every click tells a story, and every memory is priceless.</p>
+<p class="signature">Because some memories are worth more than a billion dollars.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="slide slide1">
+<div class="content">
+<div class="icon card2">
+<i class="fas fa-photo-video"></i>
+<h2 class="title">Our Services</h2>
+</div>
+</div>
+</div>
+<div class="slide slide2">
+<div class="content">
+<h3>Photography &amp; Videography</h3>
+<p>We offer cinematic photography, pre-wedding shoots, and premium videography tailored to your vision.</p>
+<p class="signature">Capturing moments that speak beyond time.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="slide slide1">
+<div class="content">
+<div class="icon card3">
+<i class="fas fa-image"></i>
+<h2 class="title">Portfolio</h2>
+</div>
+</div>
+</div>
+<div class="slide slide2">
+<div class="content">
+<h3>Our Work</h3>
+<p>Browse our portfolio of timeless memories and candid captures that define our storytelling approach.</p>
+<p class="signature">Every picture holds a memory, every frame holds a story.</p>
+</div>
+</div>
+</div>
+</div> </div> </section>
+<!-- Interactive Cards Section card jump jump ENd-->
+<!------------------------Our Equipment Categories start-------------------------->
+<section class="equipment-section" id="Equipment">
+<div class="main-content">
+<h1 class="section-title">Professional Equipment</h1>
+<p class="section-subtitle">
+                We invest in industry-leading equipment to ensure the highest quality for your project. From cinematic cameras to precision lenses, our gear is selected to bring any creative vision to life with technical excellence.
+            </p>
+<div class="gear-bento-wrapper">
+<div class="gear-bento-grid">
+<div class="gear-box cameras">
+<div class="box-header">
+<div class="box-title">Cameras</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="Sony" data-description="We use the Sony Alpha 7S III for capturing stunning footage in challenging lighting conditions. This camera allows us to deliver crystal-clear video for your weddings, events, and night shoots without compromising on quality. Whether it's your intimate ceremony or dynamic reception, this camera ensures every precious moment is captured beautifully, even in dimly lit venues." data-features="Full-Frame Sensor,Exceptional Low Light,4K Video Recording,Professional Cinema,Event Specialist" data-title="Sony Alpha 7S III">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">Alpha 7S III</div>
+</div>
+</div>
+<div class="item-description">
+                                    Our go-to camera for exceptional low-light performance and professional video quality.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Sony" data-description="The Sony Alpha 7 IV is our versatile workhorse for capturing both stunning photography and high-quality video. We use this camera to create beautiful portraits, detailed product shots, and comprehensive event coverage. Its hybrid capabilities mean we can seamlessly switch between capturing your special moments in photos and recording memorable video segments throughout your event." data-features="33MP Resolution,Hybrid Excellence,Versatile Performance,Portrait Specialist,All-Day Reliability" data-title="Sony Alpha 7 IV">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">Alpha 7 IV (M4)</div>
+</div>
+</div>
+<div class="item-description">
+                                    Perfect hybrid camera for versatile photography and video coverage of your events.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Sony" data-description="Our Sony FX3 is specifically chosen for creating cinematic masterpieces of your special occasions. We use this professional cinema camera to produce film-quality videos that tell your story with artistic flair. From wedding films to corporate documentaries, this camera helps us deliver content that feels like a Hollywood production, making your memories truly cinematic." data-features="Cinema Quality,Professional Filmmaking,Compact Design,Dual Base ISO,Creative Flexibility" data-title="Sony Cinema Line FX3">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">Cinema Line FX3</div>
+</div>
+</div>
+<div class="item-description">
+                                    Professional cinema camera for creating film-quality videos of your special moments.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Canon" data-description="We utilize the Canon R5 for projects requiring the highest resolution and 8K video capabilities. This camera allows us to capture incredibly detailed photographs and ultra-high-definition video for your most important events. Whether it's a luxury wedding, high-end corporate event, or detailed product photography, the R5 ensures we deliver premium quality that exceeds expectations." data-features="45MP Resolution,8K Video Recording,Advanced Autofocus,Weather Sealed,Professional Grade" data-title="Canon EOS R5">
+<div class="item-header">
+<div>
+<div class="item-brand">Canon</div>
+<div class="item-model">EOS R5</div>
+</div>
+</div>
+<div class="item-description">
+                                    High-resolution powerhouse for premium quality photography and 8K video production.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+<div class="gear-box lenses">
+<div class="box-header">
+<div class="box-title">Lenses</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="Sony" data-description="We use the Sony G Master 85mm for creating stunning portraits with incredible background separation. This lens helps us capture intimate moments during your wedding ceremony, detailed headshots for corporate events, and beautiful couple portraits with that dreamy, professional look. The wide aperture allows us to work in low light while creating that gorgeous bokeh effect you see in magazine-quality photos." data-features="Portrait Specialist,f/1.4 Aperture,Beautiful Bokeh,Sharp Details,Professional Quality" data-title="Sony G Master 85mm f/1.4">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">G Master 85mm f/1.4</div>
+</div>
+</div>
+<div class="item-description">
+                                    Our portrait specialist lens for capturing stunning intimate moments and headshots.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Sony" data-description="The 50mm G Master is our go-to lens for natural-looking photography that captures scenes exactly as your eyes see them. We use this lens for documenting your special day in a classic, timeless style. Whether it's candid moments during your reception, detailed shots of your venue, or artistic compositions, this lens delivers that authentic, professional look that makes your memories feel genuine and beautiful." data-features="Natural Perspective,Ultra-Wide Aperture,Versatile Range,Low Light Excellence,Classic Look" data-title="Sony G Master 50mm f/1.2">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">G Master 50mm f/1.2</div>
+</div>
+</div>
+<div class="item-description">
+                                    Classic focal length for natural, timeless photography of your special moments.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Sony" data-description="Our Sony G Master 35mm allows us to capture the full story of your event by including more of the environment in each shot. We use this lens to photograph your beautiful venue, large group shots, and artistic wide-angle compositions that show the scale and grandeur of your celebration. It's perfect for capturing the atmosphere and setting that makes your event unique and memorable." data-features="Wide Angle View,Environmental Shots,Group Photography,Venue Capture,Artistic Perspective" data-title="Sony G Master 35mm f/1.4">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">G Master 35mm f/1.4</div>
+</div>
+</div>
+<div class="item-description">
+                                    Wide-angle lens for capturing venue atmosphere and group photography.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Sony" data-description="The 24-70mm G Master is our most versatile lens that stays on our camera throughout your entire event. We use this lens to quickly adapt to any situation - from wide shots of your ceremony to closer details of your rings, decorations, and candid moments. Its versatility means we never miss a shot, and the professional quality ensures every image meets our high standards for your special day." data-features="Versatile Zoom Range,Constant Aperture,All-Day Workhorse,Quick Adaptation,Professional Standard" data-title="Sony G Master 24-70mm f/2.8">
+<div class="item-header">
+<div>
+<div class="item-brand">Sony</div>
+<div class="item-model">G Master 24-70mm f/2.8</div>
+</div>
+</div>
+<div class="item-description">
+                                    Our versatile workhorse lens for comprehensive event coverage and quick adaptation.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+<div class="gear-box lighting">
+<div class="box-header">
+<div class="box-title">Lighting</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="Nanlite" data-description="We use the Nanlite FS-300B to ensure perfect lighting for your indoor events and portraits. This powerful light allows us to create beautiful, natural-looking illumination that flatters everyone in your photos and videos. Whether we're lighting your ceremony in a dimly lit venue or creating stunning portrait sessions, this light ensures you always look your absolute best with professional-quality lighting." data-features="300W Power,Bi-Color Temperature,Wireless Control,Professional Quality,Versatile Mounting" data-title="Nanlite FS-300B Bi-Color Light">
+<div class="item-header">
+<div>
+<div class="item-brand">Nanlite</div>
+<div class="item-model">FS-300B</div>
+</div>
+</div>
+<div class="item-description">
+                                    Professional bi-color light for perfect illumination in any venue or setting.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Nanlite" data-description="Our Nanlite FS-300C RGB light allows us to add creative and colorful lighting effects to make your event truly unique. We use this light to create mood lighting that matches your wedding theme, add dramatic colors for artistic shots, or provide ambient lighting that transforms your venue's atmosphere. This gives us the flexibility to create truly personalized and memorable visual experiences for your special day." data-features="Full RGB Spectrum,Creative Colors,Mood Lighting,Wireless App Control,Special Effects" data-title="Nanlite FS-300C RGB Light">
+<div class="item-header">
+<div>
+<div class="item-brand">Nanlite</div>
+<div class="item-model">FS-300C</div>
+</div>
+</div>
+<div class="item-description">
+                                    RGB creative light for adding personalized colors and mood lighting to your event.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Nanlite" data-description="We use Nanlite stick lights for creative and portable lighting solutions that add artistic flair to your photos and videos. These compact lights allow us to create unique lighting effects, highlight specific areas, or add colorful accents to your shots. They're perfect for creating Instagram-worthy moments and adding that extra creative touch that makes your content stand out from ordinary event photography." data-features="Portable Design,RGB Colors,Battery Powered,Creative Effects,Easy Positioning" data-title="Nanlite PavoTube Stick Light">
+<div class="item-header">
+<div>
+<div class="item-brand">Nanlite</div>
+<div class="item-model">PavoTube Stick</div>
+</div>
+</div>
+<div class="item-description">
+                                    Portable RGB stick lights for creative effects and artistic lighting accents.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Godox" data-description="Our Godox SK400 studio strobe provides powerful, consistent lighting for professional portrait sessions and detailed photography. We use this light when we need maximum control over lighting quality for your formal portraits, family photos, or any situation where studio-quality lighting will make you look absolutely stunning. This ensures crisp, well-lit photos with professional results every time." data-features="400W Power,Studio Flash,Modeling Light,Professional Portraits,Consistent Output" data-title="Godox SK400 Studio Strobe">
+<div class="item-header">
+<div>
+<div class="item-brand">Godox</div>
+<div class="item-model">SK400</div>
+</div>
+</div>
+<div class="item-description">
+                                    Powerful studio strobe for professional portrait lighting and formal photography.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+<div class="gear-box stabilization">
+<div class="box-header">
+<div class="box-title">Stabilization</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="DJI" data-description="We use the DJI RS 4 gimbal to create smooth, cinematic camera movements that make your video footage look like it was shot by Hollywood professionals. This gimbal eliminates camera shake and allows us to capture flowing, graceful movements as we follow you down the aisle, through your first dance, or during your vows. The result is incredibly smooth, professional-looking video that feels cinematic and polished." data-features="Advanced Stabilization,Vertical Shooting,Heavy Payload,Intelligent Tracking,Professional Movements" data-title="DJI RS 4 Professional Gimbal">
+<div class="item-header">
+<div>
+<div class="item-brand">DJI</div>
+<div class="item-model">RS 4 Gimbal</div>
+</div>
+</div>
+<div class="item-description">
+                                    Professional gimbal for creating smooth, cinematic camera movements in your videos.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+<div class="equipment-item" data-brand="Zhiyun" data-description="Our Zhiyun Crane 4 provides backup stabilization and allows us to have multiple camera angles working simultaneously during your event. We use this gimbal for capturing alternative perspectives, following action sequences, or when we need two smooth camera movements happening at the same time. This ensures we never miss any important moments and can provide you with multiple beautifully stabilized video angles of your special day." data-features="Enhanced Stability,Quick Setup,Long Battery Life,Multiple Modes,Professional Grade" data-title="Zhiyun Crane 4 Gimbal">
+<div class="item-header">
+<div>
+<div class="item-brand">Zhiyun</div>
+<div class="item-model">Crane 4</div>
+</div>
+</div>
+<div class="item-description">
+                                    Secondary gimbal for multi-angle coverage and alternative smooth camera movements.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+<div class="gear-box audio">
+<div class="box-header">
+<div class="box-title">Audio</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="DJI" data-description="We use the DJI Mic Mini to capture crystal-clear audio of your vows, speeches, and important moments throughout your event. This tiny, wireless microphone system ensures that every word you speak is recorded perfectly, so when you watch your wedding video years from now, you'll hear every emotion, every laugh, and every heartfelt word exactly as it was spoken. No more struggling to hear what was said during those precious moments." data-features="Compact Design,Crystal Clear Audio,Long Range,Easy Setup,Professional Quality" data-title="DJI Mic Mini Wireless System">
+<div class="item-header">
+<div>
+<div class="item-brand">DJI</div>
+<div class="item-model">Mic Mini</div>
+</div>
+</div>
+<div class="item-description">
+                                    Compact wireless microphone for capturing clear audio of vows and speeches.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+<div class="gear-box aerial">
+<div class="box-header">
+<div class="box-title">Aerial</div>
+</div>
+<div class="box-content">
+<div class="equipment-item" data-brand="DJI" data-description="We use the DJI Mavic Mini 3 to capture breathtaking aerial shots of your venue and event that showcase the full scale and beauty of your celebration. These stunning overhead shots provide a unique perspective that ground-based cameras simply cannot achieve. Whether it's capturing your outdoor ceremony from above, showing the grandeur of your venue, or creating dramatic reveal shots, our drone footage adds a cinematic quality that makes your wedding film truly spectacular and memorable." data-features="Sub-249g Weight,4K HDR Video,Obstacle Avoidance,Extended Flight Time,Regulation Compliant" data-title="DJI Mavic Mini 3 Pro">
+<div class="item-header">
+<div>
+<div class="item-brand">DJI</div>
+<div class="item-model">Mavic Mini 3 Pro</div>
+</div>
+</div>
+<div class="item-description">
+                                    Professional drone for capturing stunning aerial perspectives of your venue and celebration.
+                                </div>
+<button class="read-more-btn">
+                                    Read More <span class="read-more-icon">?</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Enhanced Modal -->
+<div class="modal" id="equipmentModal">
+<div class="modal-content">
+<div class="modal-header">
+<button class="modal-close">×</button>
+<div class="modal-brand" id="modalBrand">Brand</div>
+<h2 class="modal-title" id="modalTitle">Equipment Title</h2>
+</div>
+<div class="modal-body">
+<p class="modal-description" id="modalDescription">Equipment description goes here.</p>
+<div class="modal-features">
+<h4>Key Features</h4>
+<div class="feature-tags" id="modalFeatures">
+<!-- Features will be populated by JavaScript -->
+</div>
+</div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+<!------------------------------Our Equipment Categories End---------------->
+<!-- About Section -->
+<!-- ==========================================
+     Bento Style Wedding Image Grid Section with Lightbox Start
+=========================================== -->
+<section class="bento-showcase" id="Gallery">
+<button aria-label="Toggle dark mode" id="darkModeToggle">??</button>
+<div class="grid">
+<div class="card card-1" data-image="https://i.pinimg.com/736x/82/34/7c/82347cda4e329188d651296f9ae48473.jpg">
+<h3>Signature Wedding Moments</h3>
+<p class="caption">Our photographers capture the most emotional exchanges and key moments of your special day</p>
+</div>
+<div class="card card-2" data-image="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1200">
+<h3>Candid Photography</h3>
+<p class="caption">Natural, unposed moments that reveal the true joy of your celebration</p>
+</div>
+<div class="card card-3" data-image="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200">
+<h3>Bridal Portraits</h3>
+<p class="caption">Elegant compositions highlighting the bride's beauty and attire details</p>
+</div>
+<div class="card card-4" data-image="https://images.unsplash.com/photo-1594736797933-d0d9e7f05cda?w=1200">
+<h3>Groom Portraits</h3>
+<p class="caption">Strong, masculine portraits capturing the groom's personality</p>
+</div>
+<div class="card card-5" data-image="https://i.pinimg.com/1200x/c3/07/ac/c307ac051773568b3d011e2ad5a68405.jpg">
+<h3>Pre-Wedding Shoots</h3>
+<p class="caption">Romantic sessions before the wedding day in meaningful locations</p>
+</div>
+<div class="card card-6" data-image="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=1200">
+<h3>Haldi | Mehendi | Sangeet</h3>
+<p class="caption">Vibrant coverage of traditional pre-wedding ceremonies and rituals</p>
+</div>
+</div>
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+<span class="close" onclick="closeLightbox()">×</span>
+<img alt="Expanded view" class="lightbox-img" id="lightbox-img" src=""/>
+</div>
+</section>
+<!-- ==========================================
+     Bento Style Wedding Image Grid Section with Lightbox END
+=========================================== -->
+<!-- Timeline Section Avan valkai varalaru  -->
+<!-- The main container for the timeline content start  -->
+<section class="timeline-section">
+<div class="timeline-container">
+<div class="timeline-heading">
+<h2>My Photography Journey</h2>
+<p>A timeline capturing the moments, growth, and milestones that shaped my creative career in photography.</p>
+</div>
+<div class="timeline-intro">
+<span>Click any year marker or card to explore milestones!</span>
+<svg class="intro-arrow" height="27" viewbox="0 0 28 27" width="28">
+<g fill="none" stroke="#ec4899" stroke-linecap="round" stroke-width="3">
+<path d="M14 3v17.5"></path>
+<path d="M23.3 16.5l-9.1 7-9.1-7"></path>
+</g>
+</svg>
+</div>
+</div>
+<div class="timeline-wrapper" id="timelineWrapper">
+<!-- Timeline Nodes -->
+<div class="timeline-line" id="timelineLine">
+<div class="timeline-vertical-bar"></div>
+<div class="timeline-horizontal-bar"></div>
+<button aria-label="See details for 2013" class="time-node active" data-idx="0" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2013</div>
+</button>
+<button aria-label="See details for 2015" class="time-node" data-idx="1" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2015</div>
+</button>
+<button aria-label="See details for 2018" class="time-node" data-idx="2" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2018</div>
+</button>
+<button aria-label="See details for 2020" class="time-node" data-idx="3" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2020</div>
+</button>
+<button aria-label="See details for 2023" class="time-node" data-idx="4" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2023</div>
+</button>
+<button aria-label="See details for 2025" class="time-node" data-idx="5" tabindex="0">
+<div class="node-dot"></div>
+<div class="node-year">2025</div>
+</button>
+</div>
+<!-- Timeline Cards -->
+<div class="timeline-cards" id="timelineCards">
+<div class="event-card active" tabindex="0">
+<div class="card-year">2013</div>
+<div class="card-title">The Beginning</div>
+<div class="card-summary">Started as Assistant Photographer.</div>
+<div class="card-detail">Started as an <b>Assistant Photographer</b>, learning the art and craft of capturing moments.</div>
+</div>
+<div class="event-card" tabindex="0">
+<div class="card-year">2015</div>
+<div class="card-title">First Solo Project</div>
+<div class="card-summary">First independent project completed.</div>
+<div class="card-detail">Successfully completed my first independent photography project, building confidence and portfolio.</div>
+</div>
+<div class="event-card" tabindex="0">
+<div class="card-year">2018</div>
+<div class="card-title">Expanding Horizons</div>
+<div class="card-summary">Began specializing in events.</div>
+<div class="card-detail">Began specializing in diverse events, including corporate functions and family portraits.</div>
+</div>
+<div class="event-card" tabindex="0">
+<div class="card-year">2020</div>
+<div class="card-title">Digital Transformation</div>
+<div class="card-summary">Advanced editing &amp; new equipment.</div>
+<div class="card-detail">Embraced advanced digital editing techniques and equipment to enhance photo quality.</div>
+</div>
+<div class="event-card" tabindex="0">
+<div class="card-year">2023</div>
+<div class="card-title">Creative Collaborations</div>
+<div class="card-summary">Collaborated with local artists/businesses.</div>
+<div class="card-detail">Partnered with local artists and businesses, expanding my creative network and project scope.</div>
+</div>
+<div class="event-card" tabindex="0">
+<div class="card-year">2025</div>
+<div class="card-title">Future Endeavors</div>
+<div class="card-summary">Launching workshops &amp; new artistic styles.</div>
+<div class="card-detail">Planning to launch a series of photography workshops and explore new artistic styles.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The main container for the timeline content end  -->
+<!-- 3D Slider image cursoel style start-->
+<section id="wedding-carousel-unique">
+<div class="wedding-carousel-wrapper">
+<h1 class="wedding-carousel-heading">Wedding Photography</h1>
+<div class="wedding-carousel-box">
+<button aria-label="Previous" class="wedding-carousel-nav wedding-carousel-nav-left">
+<i class="fas fa-chevron-left"></i>
+</button>
+<div class="wedding-carousel-track">
+<div class="wedding-carousel-card" data-index="0">
+<img alt="Pre-Wedding" src="https://i.pinimg.com/736x/2c/1d/76/2c1d762204a185fe69e48aebff654f20.jpg"/>
+</div>
+<div class="wedding-carousel-card" data-index="1">
+<img alt="Engagement" src="https://i.pinimg.com/736x/9a/3c/0f/9a3c0f0906bc68f73df1acc7bffbad69.jpg"/>
+</div>
+<div class="wedding-carousel-card" data-index="2">
+<img alt="Haldi" src="https://i.pinimg.com/736x/bc/02/25/bc02257f520e7bbdce5742542ba9267b.jpg"/>
+</div>
+<div class="wedding-carousel-card" data-index="3">
+<img alt="Sangeet" src="https://i.pinimg.com/736x/b2/5b/b0/b25bb078439269e056c8978c85ef43ca.jpg"/>
+</div>
+<div class="wedding-carousel-card" data-index="4">
+<img alt="Drone" src="https://i.pinimg.com/1200x/96/06/0d/96060d353bd7d95e2fe86378f27b13e1.jpg"/>
+</div>
+<div class="wedding-carousel-card" data-index="5">
+<img alt="Bridal Portraits" src="https://i.pinimg.com/736x/15/15/10/151510bdc433575f0eac09d9362d6f4a.jpg"/>
+</div>
+</div>
+<button aria-label="Next" class="wedding-carousel-nav wedding-carousel-nav-right">
+<i class="fas fa-chevron-right"></i>
+</button>
+</div>
+<div class="wedding-carousel-info">
+<h2 class="wedding-carousel-name"></h2>
+<p class="wedding-carousel-description"></p>
+</div>
+<div class="wedding-carousel-dots">
+<div class="wedding-carousel-dot"></div>
+<div class="wedding-carousel-dot"></div>
+<div class="wedding-carousel-dot"></div>
+<div class="wedding-carousel-dot"></div>
+<div class="wedding-carousel-dot"></div>
+<div class="wedding-carousel-dot"></div>
+</div>
+</div>
+</section>
+<!-- 3D Slider image cursoel style END-->
+<!-- Slider gallery section start-->
+<section class="gallery-section">
+<h2 class="section-title">Our Gallery</h2>
+<div class="gallery-slide">
+<img alt="Wedding photo 1" src="https://images.unsplash.com/photo-1455368109333-ebc686ad6c58?q=80&amp;w=1476&amp;auto=format&amp;fit=crop"/>
+<img alt="Wedding photo 2" src="https://plus.unsplash.com/premium_photo-1664528201657-378dbf6a4a91?q=80&amp;w=1472&amp;auto=format&amp;fit=crop"/>
+<img alt="Wedding photo 3" src="https://images.unsplash.com/photo-1516651000622-7f32fe80a57a?q=80&amp;w=1470&amp;auto=format&amp;fit=crop"/>
+<img alt="Wedding photo 4" src="https://images.unsplash.com/photo-1435348773030-a1d74f568bc2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop"/>
+<img alt="Wedding photo 5" src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&amp;w=1374&amp;auto=format&amp;fit=crop"/>
+</div>
+</section>
+<!-- slider image end aguthu-->
+<!-- Contact form - get touch us -->
+<div class="contact-page-wrapper25" id="Contact">
+<!-- Contact Section -->
+<section class="contact-section25" id="contact">
+<!-- Floating shapes for background animation -->
+<div class="floating-shapes">
+<div class="shape"></div>
+<div class="shape"></div>
+<div class="shape"></div>
+<div class="shape"></div>
+</div>
+<!-- Main container for the two-column layout -->
+<div class="contact-container25">
+<!-- Contact Information Card -->
+<div class="contact-info-container25 card25">
+<h2>Get in Touch</h2>
+<div class="contact-details">
+<div class="contact-item25">
+<div class="contact-icon25"><i class="fas fa-map-marker-alt"></i></div>
+<div class="contact-text25">
+<h3>Our Studio</h3>
+<p>Peelanedu Coimbatore</p>
+</div>
+</div>
+<div class="contact-item25">
+<div class="contact-icon25"><i class="fas fa-phone"></i></div>
+<div class="contact-text25">
+<h3>Call Us</h3>
+<p>7123456789</p>
+</div>
+</div>
+<div class="contact-item25">
+<div class="contact-icon25"><i class="fas fa-envelope"></i></div>
+<div class="contact-text25">
+<h3>Email Us</h3>
+<p>billionmemories.com</p>
+</div>
+</div>
+<div class="contact-item25">
+<div class="contact-icon25"><i class="fas fa-clock"></i></div>
+<div class="contact-text25">
+<h3>Working Hours</h3>
+<p>Mon-Fri: 9AM-6PM<br/>Sat-Sun: 10AM-4PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact Form Card -->
+<div class="contact-form-container25 card25">
+<h2>Send Us a Message</h2>
+<form id="contactForm">
+<div class="form-group25">
+<label for="name">Your Name</label>
+<input id="name" placeholder="Your name" required="" type="text"/>
+</div>
+<div class="form-group25">
+<label for="email">Your Email</label>
+<input id="email" placeholder="Your mail" required="" type="email"/>
+</div>
+<div class="form-group25">
+<label for="phone">Phone Number</label>
+<input id="phone" placeholder="Your number" type="tel"/>
+</div>
+<div class="form-group25">
+<label for="event-type">Event Type</label>
+<select id="event-type">
+<option value="">Select Event Type</option>
+<option value="wedding">Wedding</option>
+<option value="engagement">Engagement</option>
+<option value="baby-shoot">Baby shoot</option>
+<option value="birthday">Birthday Party</option>
+<option value="corporate">Corporate Event</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group25">
+<label for="message">Your Message</label>
+<textarea id="message" placeholder="Tell us about your event, preferred dates, and any special requirements..." required=""></textarea>
+</div>
+<button class="submit-btn25" type="submit">
+<span>Send Message</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Custom Message Box UI -->
+<div class="message-overlay25" id="messageOverlay">
+<div class="message-box25" id="messageBox">
+<i class="fas fa-check-circle" id="messageIcon"></i>
+<h3 id="messageTitle"></h3>
+<p id="messageText"></p>
+<button id="closeMessageBtn">OK</button>
+</div>
+</div>
+</div>
+<!-- Contact form - get touch us END  -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<!-- This wrapper div contains the entire footer section and encapsulates its specific styling -->
+<div class="footer-page-wrapper25">
+<section class="footer-section25">
+<div class="footer-container25">
+<!-- Company Info -->
+<div class="footer-column25 footer-company25">
+<div class="footer-logo25">
+<div class="logo-icon25">
+<i class="fas fa-camera-retro"></i>
+</div>
+<h2>Billion Memories</h2>
+</div>
+<p class="footer-description">
+                    Capturing weddings, stories, and special moments with a passion for detail and creativity. Let's preserve your memories forever.
+                </p>
+<div class="social-icons25">
+<a class="social-icon25 facebook" href="https://www.facebook.com/billionmemories"><i class="fab fa-facebook-f"></i></a>
+<a class="social-icon25 instagram" href="https://www.instagram.com/billionmemories"><i class="fab fa-instagram"></i></a>
+<a class="social-icon25" href="https://wa.me/919080927422"><i class="fab fa-whatsapp"></i></a>
+</div>
+</div>
+<!-- Quick Links -->
+<div class="footer-column25 footer-links25">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="#about"><i class="fas fa-user-friends"></i> About Us</a></li>
+<li><a href="#services"><i class="fas fa-cogs"></i> Services</a></li>
+<li><a href="#gallery"><i class="fas fa-image"></i> Gallery</a></li>
+<li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+</ul>
+</div>
+<!-- Photography Services -->
+<div class="footer-column25 footer-links25">
+<h3>Our Expertise</h3>
+<ul>
+<li><a href="#"><i class="fas fa-ring"></i> Wedding Photography</a></li>
+<li><a href="#"><i class="fas fa-child"></i> Baby Shoots</a></li>
+<li><a href="#"><i class="fas fa-video"></i> Cinematic Films</a></li>
+<li><a href="#"><i class="fas fa-mountain"></i> Outdoor Shoots</a></li>
+</ul>
+</div>
+<!-- Contact & Newsletter -->
+<div class="footer-column25">
+<h3>Get In Touch</h3>
+<div class="footer-contact25">
+<p><i class="fas fa-map-marker-alt"></i> Ramanathapuram, Coimbatore - 641045</p>
+<p><i class="fas fa-phone"></i> +91 90809 27422</p>
+<p><i class="fas fa-envelope"></i> hello@billionmemories.in</p>
+</div>
+<div class="newsletter-form25">
+<h3>Newsletter</h3>
+<p style="color: #b8b8b8; font-size: 14px; margin-bottom: 15px;">Subscribe to receive updates and offers from us.</p>
+<div class="newsletter-input25">
+<input placeholder="Enter your email" type="email"/>
+<button class="newsletter-btn25">Subscribe</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="footer-bottom25">
+<p>© 2025 Billion Memories. All rights reserved.</p>
+<div class="footer-bottom-links25">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+<a href="#">Cookie Policy</a>
+<a href="#">Sitemap</a>
+</div>
+</div>
+</section>
+<!-- Back to Top Button -->
+<a class="back-to-top25" href="#">
+<i class="fas fa-arrow-up"></i>
+</a>
+<!-- Custom Message Box UI for newsletter -->
+<div class="message-overlay25" id="newsletterMessageOverlay">
+<div class="message-box25" id="newsletterMessageBox">
+<i class="fas fa-check-circle" id="newsletterMessageIcon"></i>
+<h3 id="newsletterMessageTitle"></h3>
+<p id="newsletterMessageText"></p>
+<button id="closeNewsletterMessageBtn">OK</button>
+</div>
+</div>
+</div>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="billion.js"></script>
